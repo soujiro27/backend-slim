@@ -21,9 +21,11 @@ $auth = function() use ($security,$app) {
 $app->group('/juridico',function() use($app, $controller){
 		
 	$app->get('/Acciones',function() use ($app,$controller){
-		
 		$controller->index($app);
-		
+	});
+
+	$app->get('/Acciones/Registers',function() use ($controller){
+		$controller->get_registers();
 	});
 
 });

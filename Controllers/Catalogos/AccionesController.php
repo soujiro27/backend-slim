@@ -2,6 +2,7 @@
 
 namespace React\Backend\Controllers\Catalogos;
 
+use React\Backend\Models\Catalogos;
 
 class AccionesController {
 
@@ -12,5 +13,10 @@ class AccionesController {
 
 		$_SESSION['moduleName'] = $this->moduleName;
 		$app->render($this->directory.'index.html');
+	}
+
+	public function get_registers(){
+
+		echo json_encode(Acciones::all());
 	}
 }
