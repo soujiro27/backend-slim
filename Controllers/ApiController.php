@@ -18,7 +18,8 @@ class ApiController {
 			'cuentaPublica' => $_SESSION['sCuentaActual'],
 			'modulo' => $_SESSION['moduleName'],
 			'notificaciones' => $notificaciones->count(),
-			'usuario' => $_SESSION['sUsuario']
+			'usuario' => $_SESSION['sUsuario'],
+			'idCuentaActual' => $_SESSION['idCuentaActual']
 		);
 
 		echo json_encode($response);

@@ -2,12 +2,12 @@
 
 namespace React\Backend\Controllers\Catalogos;
 
-use React\Backend\Models\Catalogos\Acciones;
+use React\Backend\Models\Catalogos\Caracteres;
 
-class AccionesController {
+class CaracteresController {
 
-	private $directory = './react/frontend/templates/Catalogos/Acciones/';
-	private $moduleName = 'Acciones';
+	private $directory = './react/frontend/templates/Catalogos/Caracteres/';
+	private $moduleName = 'Caracteres';
 
 	public function index($app){
 
@@ -17,6 +17,6 @@ class AccionesController {
 
 	public function get_registers(){
 
-		echo json_encode(Acciones::all());
+		echo json_encode(Caracteres::all());
 	}
 }

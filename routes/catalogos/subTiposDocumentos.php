@@ -1,8 +1,10 @@
 <?php 
-namespace Routes\Catalogos;
-use App\Controllers\Catalogos\SubTiposDocumentosController;
 
-$controller = new SubTiposDocumentosController();
+namespace Backend\Routes\Catalogos;
+
+use React\Backend\Controllers\Catalogos\SubTiposController;
+
+$controller = new SubTiposController();
 
 $auth = function(){
 	//echo "yes";
@@ -12,24 +14,16 @@ $auth = function(){
 
 $app->group('/juridico',$auth,function() use($app,$controller){
 
-	$app->get('/SubTiposDocumentos',function() use ($controller){
-		$controller->index();
+	$app->get('/SubTiposDocumentos',function() use ($app,$controller){
+		$controller->index($app);
 	});
 
-	$app->get('/SubTiposDocumentos/create',function() use ($controller){
-		$controller->create();
+	$app->get('/SubTiposDocumentos/Registers/:page',function($page) use ($controller){
+		$controller->get_registers($page);
 	});
 
-	$app->get('/SubTiposDocumentos/:id',function($id) use ($controller,$app){
-		$controller->createUpdate($id, $app);
-	})->conditions(array('id' => '[0-9]{1,2}'));
-
-	$app->post('/SubTiposDocumentos/create',function() use ($app,$controller){
-		$controller->save($app->request->post(),$app);
-	});
-
-	$app->post('/SubTiposDocumentos/update',function() use($app,$controller) {
-		$controller->update($app->request->post(),$app);
+	$app->get('/SubTiposDocumentos/Pages',function() use ($controller){
+		$controller->get_pages();
 	});
 
 });
