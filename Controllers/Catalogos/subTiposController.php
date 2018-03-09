@@ -27,7 +27,7 @@ class SubTiposController {
 	public function get_pages(){
 
 
-		$pagination = ceil(SubTipos::all()->count() / 8);
+		$pagination = ceil(SubTipos::all()->count() / 5);
 		$pages = range(0,$pagination-1);
 		echo json_encode($pages);
 
