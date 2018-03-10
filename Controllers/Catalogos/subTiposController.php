@@ -17,8 +17,9 @@ class SubTiposController {
 
 	public function get_registers($page){
 
-		$registers = SubTipos::skip(5 * ($page - 1))
-                    ->take(5)
+		$registers = SubTipos::skip(8 * ($page - 1))
+					->orderBy('idSubTipoDocumento', 'asc')
+                    ->take(8)
                     ->get();
 
 		echo json_encode($registers);
@@ -27,7 +28,7 @@ class SubTiposController {
 	public function get_pages(){
 
 
-		$pagination = ceil(SubTipos::all()->count() / 5);
+		$pagination = ceil(SubTipos::all()->count() / 8);
 		$pages = range(0,$pagination-1);
 		echo json_encode($pages);
 
