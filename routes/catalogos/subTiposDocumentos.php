@@ -14,8 +14,8 @@ $auth = function(){
 
 $app->group('/juridico',$auth,function() use($app,$controller){
 
-	$app->get('/SubTiposDocumentos',function() use ($app,$controller){
-		$controller->index($app);
+	$app->get('/SubTiposDocumentos',function() use ($controller){
+		$controller->index();
 	});
 
 	$app->get('/SubTiposDocumentos/Registers/:page',function($page) use ($controller){
@@ -24,6 +24,11 @@ $app->group('/juridico',$auth,function() use($app,$controller){
 
 	$app->get('/SubTiposDocumentos/Pages',function() use ($controller){
 		$controller->get_pages();
+	});
+
+
+	$app->get('/SubTiposDocumentos/New',function() use ($controller){
+		$controller->render_new_register();
 	});
 
 });

@@ -15,6 +15,14 @@ $app->group('/juridico',function() use($app,$controller){
 		
 	});
 
+
+		$app->get('/Api/Documentos',function() use ($controller){
+		
+		$controller->get_documentos();
+		
+	});
+
+
 });
 
 

@@ -13,8 +13,8 @@ $auth = function(){
 
 $app->group('/juridico',$auth,function() use($app,$controller){
 
-	$app->get('/Caracteres',function() use ($app,$controller){
-		$controller->index($app);
+	$app->get('/Caracteres',function() use ($controller){
+		$controller->index();
 	});
 
 	$app->get('/Caracteres/Registers',function() use ($controller){

@@ -1,7 +1,7 @@
 <?php 
-namespace Routes\Catalogos;
+namespace Backend\Routes\Catalogos;
 
-use \App\Controllers\Catalogos\TextosController;
+use React\Backend\Controllers\Catalogos\TextosController;
 $controller = new TextosController();
 
 
@@ -17,20 +17,12 @@ $app->group('/juridico',$auth,function() use($app,$controller){
 		$controller->index();
 	});
 
-	$app->get('/DoctosTextos/create',function() use ($controller){
-		$controller->create();
+	$app->get('/DoctosTextos/Registers/:page',function($page) use ($controller){
+		$controller->get_registers($page);
 	});
 
-	$app->get('/DoctosTextos/:id',function($id) use ($controller,$app){
-		$controller->createUpdate($id, $app);
-	})->conditions(array('id' => '[0-9]{1,4}'));
-
-	$app->post('/DoctosTextos/create',function() use ($app,$controller){
-		$controller->save($app->request->post(), $app);
-	});
-
-	$app->post('/DoctosTextos/update',function() use($app,$controller) {
-		$controller->update($app->request->post(),$app);
+	$app->get('/DoctosTextos/Pages',function() use ($controller){
+		$controller->get_pages();
 	});
 
 });

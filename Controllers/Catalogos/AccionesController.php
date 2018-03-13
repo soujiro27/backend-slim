@@ -4,15 +4,20 @@ namespace React\Backend\Controllers\Catalogos;
 
 use React\Backend\Models\Catalogos\Acciones;
 
-class AccionesController {
+use React\Backend\Controllers\TwigController;
 
-	private $directory = './react/frontend/templates/Catalogos/Acciones/';
+class AccionesController extends TwigController{
+
 	private $moduleName = 'Acciones';
+	private $js = 'acciones';
 
-	public function index($app){
+
+	public function index(){
 
 		$_SESSION['moduleName'] = $this->moduleName;
-		$app->render($this->directory.'index.html');
+		echo $this->render('/Catalogos/index.twig',[
+			'js' => $this->js
+		]);
 	}
 
 	public function get_registers(){

@@ -2,7 +2,7 @@
 namespace React\Backend\Controllers;
 
 use React\Backend\Models\Api\Notificaciones;
-
+use React\Backend\Models\Api\TiposDocumentos;
 
 class ApiController {
 
@@ -12,7 +12,7 @@ class ApiController {
 
 		$notificaciones = $this->get_user_notification($_SESSION['idUsuario']);
 
-
+		
 
 		$response = array(
 			'cuentaPublica' => $_SESSION['sCuentaActual'],
@@ -29,8 +29,23 @@ class ApiController {
 	#Pide las Notificaciones por el idUsuario
 	public function get_user_notification($idUsuario){
 
-		$notificaciones = Notificaciones::where('idUsuario',"$idUsuario")->get();
+		$notificaciones = Notificaciones::where('idUsuario',"$idUsuario")
+										->where('situacion','NUEVO')
+										->get();
 		return $notificaciones;
+
+	}
+
+
+	#obtiene los documentos (OFICIO,NOTA, CIRCULAR)
+	public function get_documentos(){
+
+
+		$documentos = TiposDocumentos::where('tipo','JURIDICO')
+									->where('estatus','ACTIVO')
+									->get();
+
+		echo json_encode($documentos);
 
 	}
 
